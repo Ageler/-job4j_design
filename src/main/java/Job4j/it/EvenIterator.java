@@ -11,39 +11,31 @@ public class EvenIterator implements Iterator<Integer> {
         this.data = data;
     }
 
+    @Override
     public boolean hasNext() {
-        int iter = 0;
-        boolean rsl = false;
-        while (point < data.length) {
-            iter++;
-            if(isEven(data[point++])) {
-                rsl = true;
-                point -= iter;
-                break;
-            }
+        if (!(point < data.length) || data.length == 1) {
+            return false;
         }
-        return rsl;
-    }
-
-    public Integer next() {
-        int rsl = 0;
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        while (point < data.length) {
-            if(isEven(data[point])) {
-                rsl = data[point++];
-                break;
-            }
+        while (!isEven(data[point])) {
             point++;
+            if (point == data.length) {
+                break;
+            }
         }
-        return rsl;
+        return point < data.length;
     }
 
     public void remove() {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public Integer next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        return data[point++];
+    }
     public boolean isEven(int i) {
         return i % 2 == 0;
     }
