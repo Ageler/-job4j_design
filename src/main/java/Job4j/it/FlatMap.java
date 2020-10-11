@@ -1,20 +1,29 @@
 package Job4j.it;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.*;
 
 public class FlatMap<T> implements Iterator<T> {
-    private final Iterator<Iterator<T>> data;
+    private Iterator<Iterator<T>> data;
     private Iterator<T> cursor;
+    private int point = 0;
 
     public FlatMap(Iterator<Iterator<T>> data) {
         this.data = data;
     }
 
+    List<T> iterList = StreamSupport.stream(
+                Spliterators.spliteratorUnknownSize(data, Spliterator.ORDERED),
+                false)
+                .flatMap(x -> StreamSupport.stream(
+                        Spliterators.spliteratorUnknownSize(x, Spliterator.ORDERED),
+                        false))
+                .collect(Collectors.toList());
+
+
     @Override
     public boolean hasNext() {
-        return false;
+        return point < iterList.size();
     }
 
     @Override
@@ -22,7 +31,7 @@ public class FlatMap<T> implements Iterator<T> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return cursor.next();
+        return iterList.get(point++);
     }
 
     public static void main(String[] args) {
