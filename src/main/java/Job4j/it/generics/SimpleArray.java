@@ -14,9 +14,9 @@ public class SimpleArray<T> implements Iterable{
         elementData = new Object[INITIAL_CAPACITY];
     }
 
-    public Object set(int index, T e) {
+    public T set(int index, T e) {
         Objects.checkIndex(index, size);
-        Object oldValue = elementData[index];
+        T oldValue = (T) elementData[index];
         elementData[index] = e;
         return oldValue;
     }
@@ -28,16 +28,15 @@ public class SimpleArray<T> implements Iterable{
         elementData[size++] = e;
     }
 
-    public Object remove(int index) {
+    public void remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size "
                     + index);
         }
-        Object removedElement = elementData[index];
+        elementData[index] = null;
         System.arraycopy(elementData, index, elementData, size - 1, size - index);
         size--;
 
-        return removedElement;
     }
 
     private void ensureCapacity() {
@@ -59,11 +58,11 @@ public class SimpleArray<T> implements Iterable{
             }
 
             @Override
-            public Object next() {
+            public T next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return elementData[point++];
+                return (T) elementData[point++];
             }
         };
     }
