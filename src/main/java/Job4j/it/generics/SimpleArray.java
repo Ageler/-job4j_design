@@ -34,9 +34,7 @@ public class SimpleArray<T> implements Iterable{
                     + index);
         }
         Object removedElement = elementData[index];
-        for (int i = index; i < size - 1; i++) {
-            elementData[i] = elementData[i + 1];
-        }
+        System.arraycopy(elementData, index, elementData, size - 1, size - index);
         size--;
 
         return removedElement;
@@ -57,7 +55,7 @@ public class SimpleArray<T> implements Iterable{
 
             @Override
             public boolean hasNext() {
-                return point < elementData.length;
+                return point < size;
             }
 
             @Override
