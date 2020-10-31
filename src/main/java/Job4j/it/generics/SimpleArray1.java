@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleArray<T> implements Iterable{
+public class SimpleArray1<T> implements Iterable{
     private static final int INITIAL_CAPACITY = 10;
     private int size = 0;
     private Object elementData[] = {};
 
-    public SimpleArray() {
+    public SimpleArray1() {
         elementData = new Object[INITIAL_CAPACITY];
     }
 
