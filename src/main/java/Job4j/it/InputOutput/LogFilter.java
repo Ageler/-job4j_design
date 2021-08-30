@@ -9,7 +9,10 @@ public class LogFilter {
     public static List<String> filter(String file) {
         List<String> res = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-           res =  in.lines().filter(str -> str.contains(" 404 ")).collect(Collectors.toList());
+           res =  in.lines().filter(str -> {
+               String[] rls = str.split("\\s+");
+               return rls[rls.length - 2].equals("404");
+           }).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }
