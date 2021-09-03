@@ -1,14 +1,11 @@
 package Job4j.it.InputOutput;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Config {

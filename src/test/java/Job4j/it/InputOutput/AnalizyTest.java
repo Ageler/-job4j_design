@@ -1,6 +1,5 @@
 package Job4j.it.InputOutput;
 
-import junit.framework.TestCase;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;

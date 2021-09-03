@@ -2,7 +2,6 @@ package Job4j.it.generics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class MemStore<T extends Base> implements Store<T> {
 

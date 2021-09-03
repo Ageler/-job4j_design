@@ -3,7 +3,6 @@ package Job4j.it.OOD.LSP;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class StartProgramm {
    private final List<Food> stack = new ArrayList<>();
