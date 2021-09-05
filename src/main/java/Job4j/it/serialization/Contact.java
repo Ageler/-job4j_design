@@ -1,5 +1,8 @@
 package Job4j.it.serialization;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.nio.file.Files;
 
@@ -30,25 +33,25 @@ public class Contact implements Serializable {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        final Contact contact = new Contact(123456, "+7 (111) 111-11-11");
-        final Contact secContact = new Contact(654321, "some number");
+        final Person person = new Person(false, 30, new Contact(11111, "11111"), "Worker", "Married");
 
-        /* Запись объекта во временный файл, который удалится системой */
-        File tempFile = Files.createTempFile(null, null).toFile();
-        try (FileOutputStream fos = new FileOutputStream(tempFile);
-             ObjectOutputStream oos =
-                     new ObjectOutputStream(fos)) {
-            oos.writeObject(contact);
-            oos.writeObject(secContact);
-        }
+        /* Преобразуем объект person в json-строку. */
+        final Gson gson = new GsonBuilder().create();
+        System.out.println(gson.toJson(person));
 
-        /* Чтение объекта из файла */
-        try (FileInputStream fis = new FileInputStream(tempFile);
-             ObjectInputStream ois =
-                     new ObjectInputStream(fis)) {
-            final Contact contactFromFile = (Contact) ois.readObject();
-            final Contact secVontactFromFile = (Contact) ois.readObject();
-            System.out.println(contactFromFile  + " " + secVontactFromFile);
+        /* Модифицируем json-строку */
+        final String carJson =
+                "{"
+                        + "\"new\":false,"
+                        + "\"created\":2015,"
+                        + "\"model\":"
+                        + "{"
+                        + "\"BMW\":\"m3\""
+                        + "},"
+                        + "\"accidents\":"
+                        + "[\"20.01.2018\",\"11.08.2020\"]"
+                        + "}";
+        final Person carMod = gson.fromJson(carJson, Person.class);
+        System.out.println(carMod);
         }
     }
-}
