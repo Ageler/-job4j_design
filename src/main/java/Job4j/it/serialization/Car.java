@@ -1,12 +1,22 @@
 package Job4j.it.serialization;
 
+import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
+
+@XmlRootElement(name = "car")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Car {
-    private final boolean damaged;
-    private final int age;
-    private final Driver driver;
-    private final String[] accidents;
+    @XmlAttribute
+    private boolean damaged;
+    @XmlAttribute
+    private int age;
+    private Driver driver;
+
+    @XmlElementWrapper(name = "accidents")
+    @XmlElement(name = "accident")
+    private String[] accidents;
 
     public Car(boolean damaged, int age, Driver driver, String... accidents) {
         this.damaged = damaged;
@@ -14,6 +24,8 @@ public class Car {
         this.driver = driver;
         this.accidents = accidents;
     }
+
+    public Car() { }
 
     @Override
     public String toString() {
