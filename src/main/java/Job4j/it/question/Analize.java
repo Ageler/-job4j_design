@@ -6,10 +6,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Analize {
-    private static int add;
-    private static int update;
-    private static int deleted;
-    public static Info diff(Set<User> previous, Set<User> current) {
+    private int add;
+    private int update;
+    private int deleted;
+    public Info diff(Set<User> previous, Set<User> current) {
         Map<Integer, String> prev = previous.stream().collect(Collectors
                 .toMap(User::getId, User::getName));
         Map<Integer, String> curr = current.stream().collect(Collectors
