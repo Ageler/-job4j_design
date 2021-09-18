@@ -36,4 +36,5 @@ public class Car {
                 + ", accidents=" + Arrays.toString(accidents)
                 + '}';
     }
+
 }
