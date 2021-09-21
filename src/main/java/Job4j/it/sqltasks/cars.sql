@@ -1,6 +1,6 @@
 CREATE TABLE cars (
 id serial primary key,
-	name varchar(255) NOT NULL,
+	name1 varchar(255) NOT NULL,
 	year_of_production date NOT NULL,
 	damaged boolean
 );
