@@ -1,0 +1,29 @@
+CREATE TABLE cars1(
+id serial primary key,
+model varchar(255),
+damaged boolean
+);
+
+CREATE TABLE wheels (
+id serial primary key,
+	type_of_model text,
+	number_of_wheels int
+);
+
+CREATE TABLE cars1_wheels (
+id serial primary key,
+	cars1_id int references cars1(id) unique,
+	wheels_id int references wheels(id) unique
+);
+
+CREATE TABLE cars1_wheels_many2many (
+id serial primary key,
+	cars1_id int references cars1(id),
+	wheels_id int references wheels(id)
+);
+
+CREATE TABLE drivers (
+ id serial primary key,
+    name varchar(255),
+	cars_owned int references cars1(id)
+);
