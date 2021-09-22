@@ -1,0 +1,3 @@
+select f.name, f.avg_age from fauna as f inner join students as std on f.id = std.id;
+select r.name from role as r inner join users as u on r.id = u.id;
+select c.name from category as c inner join users as u on c.id = u.id;
