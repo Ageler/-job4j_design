@@ -1,0 +1,4 @@
+SELECT avg(price) from devices
+SELECT avg(price), p.name from devices_people as dp join devices as dev on dp.device_id = dev.id join people as p on p.id = dp.people_id group by p.name;
+SELECT avg(price), p.name from devices_people as dp join devices as dev on dp.device_id = dev.id
+                                                    join people as p on p.id = dp.people_id group by p.name having avg(price) > 200 ;
