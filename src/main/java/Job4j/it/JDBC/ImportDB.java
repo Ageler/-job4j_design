@@ -1,15 +1,13 @@
 package Job4j.it.JDBC;
 
-import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 public class ImportDB {
 
@@ -44,9 +42,10 @@ public class ImportDB {
                 cfg.getProperty("jdbc.password")
         )) {
             for (User user : users) {
-                try (PreparedStatement ps = cnt.prepareStatement("insert into users ")) {
+                try (PreparedStatement ps = cnt.prepareStatement("insert into users(name, email) values (?, ?)",
+                        Statement.RETURN_GENERATED_KEYS)) {
                     ps.setString(1, user.name);
-                    ps.setString(1, user.email);
+                    ps.setString(2, user.email);
                     ps.execute();
                 }
             }
