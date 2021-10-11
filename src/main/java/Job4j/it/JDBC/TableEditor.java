@@ -35,8 +35,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) throws SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (id serial primary key," +
-                "name varchar(50))";
+        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + "(id serial primary key)";
         statement.executeUpdate(sql);
     }
 
@@ -58,7 +57,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
-        String sql = "RENAME COLUMN " + tableName + "." + columnName + " TO " + newColumnName;
+        String sql = "ALTER TABLE " + tableName + " RENAME COLUMN "  + columnName + " TO " + newColumnName;
         statement.executeUpdate(sql);
     }
 
