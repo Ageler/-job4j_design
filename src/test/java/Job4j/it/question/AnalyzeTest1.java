@@ -51,12 +51,10 @@ public class AnalyzeTest1  {
                         new Pupil("Petrov", List.of(new Subject("Math", 60), new Subject("Lang", 60)))
                 ).stream()
         );
-        for (int i = 0; i < average.size(); i++) {
-            System.out.println(average.get(i).getName() + average.get(i).getScore());
-        }
         assertThat(average, is(List.of(
-                new Tuple("Lang", 80D),
-                new Tuple("Math", 80D)
+                new Tuple("Math", 80D),
+                new Tuple("Lang", 80D)
+
         )));
     }
 
