@@ -15,7 +15,6 @@ public class ReportEngine implements Report {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;");
         for (Employee employee : store.findBy(filter)) {
-
             text.append(System.lineSeparator())
                     .append(employee.getName()).append(";")
                     .append(employee.getHired()).append(";")

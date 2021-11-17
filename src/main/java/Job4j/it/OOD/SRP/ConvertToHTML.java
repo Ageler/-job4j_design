@@ -11,9 +11,11 @@ public class ConvertToHTML implements Converter {
     @Override
     public String convert(String sourceData) {
         StringBuilder converted =  new StringBuilder();
-        converted.append("<html><head>")
+        converted.append("<html><body>")
+                .append("<h1>")
                 .append(sourceData)
-                .append("</html></head>");
+                .append("</h1>")
+                .append("</html></body>");
 
 
         return converted.toString();
