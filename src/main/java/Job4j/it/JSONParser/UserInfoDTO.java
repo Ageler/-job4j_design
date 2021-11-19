@@ -55,18 +55,6 @@ public class UserInfoDTO {
 }
 
 @Data
-class Resource_access {
-    public Sbercare sbercare;
-    public Account account;
-    public SberFriend sberFriend;
-}
-
-@Data
- class Sbercare {
-    public List<String> roles;
- }
-
-@Data
  class Account {
     public List<String> roles;
  }
