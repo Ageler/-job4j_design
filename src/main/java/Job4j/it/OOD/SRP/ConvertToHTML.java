@@ -14,8 +14,6 @@ public class ConvertToHTML implements Converter {
         converted.append("<html><head>")
                 .append(sourceData)
                 .append("</html></head>");
-
-
         return converted.toString();
     }
 }
