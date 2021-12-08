@@ -1,19 +1,28 @@
 package Job4j.it.OOD.SRP;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 public class ConvertToHTML implements Converter {
 
-    String sourceData;
+    private Report reportEngine;
 
-    public ConvertToHTML(String sourceData) {
-        this.sourceData = sourceData;
+    public ConvertToHTML(Report reportEngine) {
+        this.reportEngine = reportEngine;
     }
 
     @Override
-    public String convert(String sourceData) {
+    public String convert(Predicate<Employee> filter) {
+      String sourceData = reportEngine.generate(filter);
         StringBuilder converted =  new StringBuilder();
-        converted.append("<html><head>")
+        converted.append("<html>" +
+                        "<body>" +
+                        "<h2>")
                 .append(sourceData)
-                .append("</html></head>");
+                .append("</h2>" +
+                        "</body>" +
+                        "</html>");
 
 
         return converted.toString();
