@@ -2,7 +2,9 @@ package Job4j.it.OOD.LSP;
 
 import java.util.List;
 
-public class Warehouse implements Storeage{
+public class Warehouse implements Storage {
+
+
     @Override
     public void add(Food food) {
 
@@ -17,4 +19,10 @@ public class Warehouse implements Storeage{
     public List<Food> clear() {
         return null;
     }
+
+    @Override
+    public int calculate(Food food) {
+        return Storage.super.calculate(food);
+    }
+
 }

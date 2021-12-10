@@ -5,20 +5,28 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class HRSort implements SortByPredicate{
+public class HRSort implements Report{
 
     private Store store;
-    private Predicate<Employee> predicate;
 
-    public HRSort(Store store, Predicate<Employee> predicate) {
+    public HRSort(Store store) {
         this.store = store;
-        this.predicate = predicate;
     }
 
     @Override
-    public List<Employee> sort() {
-        List<Employee> employees = store.findBy(predicate);
+    public String generate(Predicate<Employee> filter) {
+        List<Employee> employees = store.findBy(filter);
         Collections.sort(employees, Comparator.comparingDouble(Employee::getSalary));
-        return employees;
+        StringBuilder text = new StringBuilder();
+        text.append("Name; Hired; Fired; Salary;");
+        for (Employee employee: employees) {
+            text.append(System.lineSeparator())
+                    .append(employee.getName()).append(";")
+                    .append(employee.getHired()).append(";")
+                    .append(employee.getFired()).append(";")
+                    .append(employee.getSalary()).append(";")
+                    .append(System.lineSeparator());
+        }
+        return text.toString();
     }
 }

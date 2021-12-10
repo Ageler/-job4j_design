@@ -1,65 +1,52 @@
 package Job4j.it.OOD.LSP;
 
-import java.time.LocalDate;
+import lombok.Data;
+
+import java.time.*;
 import java.util.Objects;
 
+@Data
 public abstract class Food {
     private String Name;
-    private LocalDate expaireDate;
+    private LocalDate expireDate;
     private LocalDate createDate;
     private double price;
-    private float discount = 0;
+    private float discount = 1;
 
-    public Food(String name, LocalDate expaireDate, LocalDate createDate, double price) {
+    public Food(String name, LocalDate expireDate, LocalDate createDate, double price) {
         Name = name;
-        this.expaireDate = expaireDate;
+        this.expireDate = expireDate;
         this.createDate = createDate;
         this.price = price;
     }
 
+    public int isExpired(Food food) {
 
-    public double getPrice() {
-        return price;
+        LocalDate expireDate = food.getExpireDate();
+        LocalDate createDate = food.getCreateDate();
+
+        double productExpirationPeriod = ZonedDateTime.of(expireDate.atStartOfDay(),
+                ZoneId.systemDefault()).toInstant().toEpochMilli() -
+                ZonedDateTime.of(createDate.atStartOfDay(),
+                        ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+
+        double nowExpirationPeriod = ZonedDateTime.of(expireDate.atStartOfDay(),
+                ZoneId.systemDefault()).toInstant().toEpochMilli() -
+        Instant.now().toEpochMilli();
+
+        if (productExpirationPeriod * 0.75 < nowExpirationPeriod) {
+            return 1;
+        } else if (productExpirationPeriod * 0.75 > nowExpirationPeriod
+                && nowExpirationPeriod > productExpirationPeriod * 0.25) {
+            return 2;
+        } else if (productExpirationPeriod * 0.25 < nowExpirationPeriod
+                && nowExpirationPeriod < 0) {
+            food.setDiscount(0.5f);
+            return 3;
+        } else
+            return 4;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public LocalDate getExpaireDate() {
-        return expaireDate;
-    }
-
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Food food = (Food) o;
-        return Double.compare(food.price, price) == 0 &&
-                Float.compare(food.discount, discount) == 0 &&
-                Objects.equals(Name, food.Name) &&
-                Objects.equals(expaireDate, food.expaireDate) &&
-                Objects.equals(createDate, food.createDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(Name, expaireDate, createDate, price, discount);
-    }
 }

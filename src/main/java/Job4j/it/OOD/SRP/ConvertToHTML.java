@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ConvertToHTML implements Converter {
+public class ConvertToHTML implements Report {
 
     private Report reportEngine;
 
@@ -13,8 +13,8 @@ public class ConvertToHTML implements Converter {
     }
 
     @Override
-    public String convert(Predicate<Employee> filter) {
-      String sourceData = reportEngine.generate(filter);
+    public String generate(Predicate<Employee> filter) {
+        String sourceData = reportEngine.generate(filter);
         StringBuilder converted =  new StringBuilder();
         converted.append("<html>" +
                         "<body>" +
@@ -23,8 +23,6 @@ public class ConvertToHTML implements Converter {
                 .append("</h2>" +
                         "</body>" +
                         "</html>");
-
-
         return converted.toString();
     }
 }
