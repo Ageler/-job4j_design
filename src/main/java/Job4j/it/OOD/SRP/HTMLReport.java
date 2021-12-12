@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ConvertToHTML implements Report {
+public class HTMLReport implements Report {
 
     private Report reportEngine;
 
-    public ConvertToHTML(Report reportEngine) {
+    public HTMLReport(Report reportEngine) {
         this.reportEngine = reportEngine;
     }
 

@@ -5,11 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class HRSort implements Report{
+public class HRReport implements Report{
 
     private Store store;
 
-    public HRSort(Store store) {
+    public HRReport(Store store) {
         this.store = store;
     }
 
