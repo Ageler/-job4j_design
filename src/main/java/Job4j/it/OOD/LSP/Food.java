@@ -20,7 +20,7 @@ public abstract class Food {
         this.price = price;
     }
 
-    public int isExpired(Food food) {
+    /*public int isExpired(Food food) {
 
         LocalDate expireDate = food.getExpireDate();
         LocalDate createDate = food.getCreateDate();
@@ -46,7 +46,7 @@ public abstract class Food {
             return 3;
         } else
             return 4;
-    }
+    }*/
 
 
 }

@@ -22,7 +22,7 @@ public class Parking implements AbstractParking{
         emptyTruckPlaces = allTruckPlaces;
     }
 
-    public boolean addCar(Car car) {
+    private boolean addCar(Car car) {
         if (vehicles == null) {
             vehicles = new ArrayList<>();
         }
@@ -36,7 +36,7 @@ public class Parking implements AbstractParking{
         return false;
     }
 
-    public boolean addTruck(Truck truck) {
+    private boolean addTruck(Truck truck) {
         if (vehicles == null) {
             vehicles = new ArrayList<>();
         }

@@ -1,61 +1,27 @@
 package Job4j.it.serialization.json;
 
-import Job4j.it.serialization.Driver;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-
 import java.util.Arrays;
 
- class Car {
+public class Person {
+    private final boolean sex;
+    private final int age;
+    private final Contact contact;
+    private final String[] statuses;
 
-    private boolean damaged;
-
-    private int age;
-    private Driver driver;
-    private String[] accidents;
-
-    public Car(boolean damaged, int age, Driver driver, String... accidents) {
-        this.damaged = damaged;
+    public Person(boolean sex, int age, Contact contact, String[] statuses) {
+        this.sex = sex;
         this.age = age;
-        this.driver = driver;
-        this.accidents = accidents;
+        this.contact = contact;
+        this.statuses = statuses;
     }
-
-    public Car() { }
 
     @Override
     public String toString() {
-        return "Car{"
-                + "damaged=" + damaged
+        return "Person{"
+                + "sex=" + sex
                 + ", age=" + age
-                + ", driver=" + driver
-                + ", accidents=" + Arrays.toString(accidents)
+                + ", contact=" + contact
+                + ", statuses=" + Arrays.toString(statuses)
                 + '}';
-    }
-
-    public static void main(String[] args) {
-        final Car car = new Car(false, 5, new Driver(false, 42), "Worker", "Married");
-
-        /* Преобразуем объект person в json-строку. */
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(car));
-
-        /* Модифицируем json-строку */
-      final String carJson =
-                "{"
-                        + "\"damaged\":false,"
-                        + "\"age\":5,"
-                        + "\"driver\":"
-                        + "{"
-                        + "\"sex\": false,"
-                        + "\"age\" : 40"
-                        + "},"
-                        + "\"statuses\":"
-                        + "[\"Student\",\"Free\"]"
-                        + "}";
-        final Car carMod = gson.fromJson(carJson, Car.class);
-        System.out.println(carMod);
-
     }
 }
