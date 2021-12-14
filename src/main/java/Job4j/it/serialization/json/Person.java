@@ -1,7 +1,11 @@
 package Job4j.it.serialization.json;
 
+import lombok.Data;
+
 import java.util.Arrays;
 
+
+@Data
 public class Person {
     private final boolean sex;
     private final int age;
